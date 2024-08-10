@@ -1,4 +1,4 @@
-import { Home } from "lucide-react";
+import { Home, Database } from "lucide-react";
 import Index from "./pages/Index.jsx";
 
 /**
@@ -6,9 +6,9 @@ import Index from "./pages/Index.jsx";
  */
 export const navItems = [
   {
-    title: "Home",
+    title: "S3 & VDB Manager",
     to: "/",
-    icon: <Home className="h-4 w-4" />,
+    icon: <Database className="h-4 w-4" />,
     page: <Index />,
   },
 ];
