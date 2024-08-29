@@ -11,7 +11,7 @@ const Index = () => {
   const queryClient = useQueryClient();
   const [newCollectionName, setNewCollectionName] = useState('');
 
-  const { data: s3Files } = useQuery({
+  const { data: s3Files, isLoading: isLoadingFiles } = useQuery({
     queryKey: ['s3Files'],
     queryFn: async () => {
       const [json, description, image] = await Promise.all([
@@ -23,7 +23,7 @@ const Index = () => {
     }
   });
 
-  const { data: vdbCollections } = useQuery({
+  const { data: vdbCollections, isLoading: isLoadingCollections } = useQuery({
     queryKey: ['vdbCollections'],
     queryFn: listCollections
   });
@@ -69,6 +69,10 @@ const Index = () => {
       createCollectionMutation.mutate(newCollectionName);
     }
   };
+
+  if (isLoadingFiles || isLoadingCollections) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <div className="container mx-auto p-4">
